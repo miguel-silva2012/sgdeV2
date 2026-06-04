@@ -8,8 +8,11 @@ Um projeto de sistema de gerenciamento de estoque para uma empresa pequena
 
 ### pré-requisitos
 
-A linguagem de programação usada neste projeto foi o Java 26 com a biblioteca JavaFx, futuramente o projeto usará SQL(MySQL) para guardar dados com mais segurança.
+A linguagem de programação usada neste projeto foi o Java 26 com a biblioteca JavaFx, futuramente o projeto usará SQL(MySQL) para guardar dados com mais segurança. Então serão necessários:
+
+1. **Java(26)**;
+2. **JavaFx**;
 
 ### licença
 
-A licença é Apache-2.0 license
+A licença é [Apache-2.0 LICENSE](./LICENSE)
