@@ -1,6 +1,6 @@
 # sge
 
-[![Maintenance](https://img.shields.io/badge/svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+![JavaFX](https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white)
 
 ## descrição
 
