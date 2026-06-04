@@ -12,4 +12,4 @@ A linguagem de programação usada neste projeto foi o Java 26 com a biblioteca 
 
 ### licença
 
-A licença é MIT LICENSE
+A licença é Apache-2.0 license
