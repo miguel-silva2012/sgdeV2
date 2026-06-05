@@ -16,7 +16,7 @@ public class PrimaryController {
         String textField = mainField.getText();
 
         if (textField.isEmpty()) {
-            result.setText("O texto esta vazio");
+            result.setText("The field is empty");
         } else {
             result.setText(textField);
             mainField.clear();

@@ -6,6 +6,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
    <stylesheets>
@@ -22,6 +24,14 @@
       <Button text="Enter" onAction="#getTextField" />
 
       <Label text=" " fx:id="result" />
+
+      <TableView fx:id="tableClothes" prefHeight="300.0" prefWidth="450.0">
+         <columns>
+            <TableColumn fx:id="columnId" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="columnName" prefWidth="200.0" text="Name" />
+            <TableColumn fx:id="columnEmail" prefWidth="200.0" text="E-mail" />
+         </columns>
+      </TableView>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
