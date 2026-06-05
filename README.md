@@ -14,9 +14,9 @@ O projeto usará banco de dados para guardar dados e funções novas serão adic
 
 ### pré-requisitos
 
-A linguagem de programação usada neste projeto foi o Java 11 com a biblioteca JavaFx, futuramente o projeto usará SQL(MySQL) para guardar dados com mais segurança. Então serão necessários:
+A linguagem de programação usada neste projeto foi o Java 21 (LTS) com a biblioteca JavaFx, futuramente o projeto usará SQL(MySQL) para guardar dados com mais segurança. Então serão necessários:
 
-- **Java(11)**;
+- **Java(21)**;
 - **JavaFx**;
 
 ### licença
