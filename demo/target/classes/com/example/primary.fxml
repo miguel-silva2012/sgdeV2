@@ -17,9 +17,13 @@
    <children>
       <Label text="Enter a name of clothe" />
 
-      <TextField fx:id="mainField" 
+      <TextField fx:id="nameField" 
                promptText="Say the name of the product..." 
                maxWidth="250.0"/>
+
+      <TextField fx:id="priceField" 
+         promptText="Say the price of the product..." 
+         maxWidth="250.0"/>
 
       <Button text="Enter" onAction="#getTextField" />
 
@@ -27,9 +31,9 @@
 
       <TableView fx:id="tableClothes" prefHeight="300.0" prefWidth="450.0">
          <columns>
-            <TableColumn fx:id="columnId" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="columnId" prefWidth="50.0" text="ID " />
             <TableColumn fx:id="columnName" prefWidth="200.0" text="Name" />
-            <TableColumn fx:id="columnEmail" prefWidth="200.0" text="E-mail" />
+            <TableColumn fx:id="columnPrice" prefWidth="230.0" text="Price" />
          </columns>
       </TableView>
    </children>

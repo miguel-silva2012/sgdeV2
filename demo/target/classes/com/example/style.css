@@ -25,13 +25,26 @@
 }
 
 .table-view {
-  -fx-background-color: rgb(44, 44, 44);
-  -fx-border-radius: 5px;
-  -fx-border-color: rgb(107, 107, 113);
-  -fx-border-width: 1px;
-  -fx-background-radius: 5px;
+    -fx-background-color: rgb(44, 44, 44);
+    -fx-border-radius: 5px;
+    -fx-border-color: rgb(107, 107, 113);
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-padding: 0px;
 }
 
-.table-view .column-header-background {
-  -fx-background-color: rgb(44, 44, 44);
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: rgb(44, 44, 44);
+}
+
+.table-row-cell {
+    -fx-background-color: rgb(44, 44, 44);
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgb(55, 55, 55);
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: rgb(83, 83, 83);
 }
