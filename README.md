@@ -13,7 +13,11 @@ Um projeto de sistema de gerenciamento de estoque para uma empresa pequena cujas
 A linguagem de programação usada neste projeto foi o Java 21 (LTS) com a biblioteca JavaFx, o projeto usa SQL(MySQL) para guardar dados com mais segurança. Então serão necessários:
 
 - **Java(21)**;
-- **JavaFx**;
+- **JavaFx**.
+
+## colaboradores
+
+- **Felipe Pascoal(Bumdigital)**;
 
 ### licença
 

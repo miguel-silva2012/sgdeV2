@@ -32,8 +32,10 @@
       <TableView fx:id="tableClothes" prefHeight="300.0" prefWidth="450.0">
          <columns>
             <TableColumn fx:id="columnId" prefWidth="50.0" text="ID " />
-            <TableColumn fx:id="columnName" prefWidth="200.0" text="Name" />
-            <TableColumn fx:id="columnPrice" prefWidth="230.0" text="Price" />
+            <TableColumn fx:id="columnName" prefWidth="70.0" text="Name" />
+            <TableColumn fx:id="columnPrice" prefWidth="125.0" text="Price" />
+            <TableColumn fx:id="columnQuantity" prefWidth="150.0" text="Quantity" />
+            <TableColumn fx:id="columnDescription" prefWidth="200.0" text="Description" />
          </columns>
       </TableView>
    </children>
