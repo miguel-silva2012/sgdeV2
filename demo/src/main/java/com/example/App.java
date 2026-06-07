@@ -14,7 +14,7 @@ public class App extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("primary.fxml"));
-        scene = new Scene(fxmlLoader.load(), 640, 480);       
+        scene = new Scene(fxmlLoader.load(), 640, 480);
 
         stage.setScene(scene);
         stage.show();
