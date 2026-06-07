@@ -10,9 +10,9 @@ public class Clothe {
     private int ID;
 
     public Clothe(int ID, String name, BigDecimal price, short quantity, String description) {
+        this.ID = ID;
         this.name = name;
         this.price = price;
-        this.ID = ID;
         this.quantity = quantity;
         this.description = description;
     }

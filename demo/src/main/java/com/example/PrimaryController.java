@@ -42,8 +42,6 @@ public class PrimaryController {
 
     private ObservableList<Clothe> clothes = FXCollections.observableArrayList(); 
 
-    private int ID = 0;
-
     SQLDataBaseConection sqlDBConection;
 
     @FXML
@@ -74,8 +72,6 @@ public class PrimaryController {
                     sqlDBConection.getResultSet().getShort("quantity"), 
                     sqlDBConection.getResultSet().getString("description")));
             }
-            
-            ID++;
         }
     }
 }

@@ -23,7 +23,12 @@ public class SQLDataBaseConection {
 
         conn = DriverManager.getConnection(URL, user, password);
 
-        rsClient = conn.createStatement().executeQuery("SELECT * FROM tableclothes");
+        rsClient = execQuery("SELECT * FROM tableclothes");
+    }
+
+    @SuppressWarnings("exports")
+    public ResultSet execQuery(String query) throws SQLException {
+        return conn.createStatement().executeQuery(query);
     }
 
     @SuppressWarnings("exports")
