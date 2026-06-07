@@ -20,6 +20,12 @@ public class PrimaryController {
     private TextField priceField;
 
     @FXML
+    private TextField quantityField;
+
+    @FXML
+    private TextField descriptionField;
+
+    @FXML
     private Label result;
 
     @FXML 
@@ -60,14 +66,16 @@ public class PrimaryController {
     private void getTextField() throws SQLException {
         String nameFields = nameField.getText();
         String priceFields = priceField.getText(); 
+        String quantityFields = priceField.getText(); 
+        String descriptionFields = priceField.getText(); 
 
         sqlDBConection = new SQLDataBaseConection();
 
-        if (nameFields.isEmpty() || priceFields.isEmpty()) {
-            result.setText("The field is empty");
-        } else {
+        if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())) {
             nameField.clear();
             priceField.clear();
+            quantityField.clear();
+            descriptionField.clear();
 
             columnId.setCellValueFactory(new PropertyValueFactory<>("ID"));
             columnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -76,6 +84,8 @@ public class PrimaryController {
             columnDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
             
             tableClothes.setItems(clothes);
+        } else {
+            result.setText("Some field is empty");
         }
     }
 }
