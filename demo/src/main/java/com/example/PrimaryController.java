@@ -44,6 +44,18 @@ public class PrimaryController {
 
     SQLDataBaseConection sqlDBConection;
 
+    public PrimaryController() throws SQLException {
+        sqlDBConection = new SQLDataBaseConection();
+
+        while (sqlDBConection.getResultSet().next()) {
+            clothes.add(new Clothe(sqlDBConection.getResultSet().getInt("ID"),
+                sqlDBConection.getResultSet().getString("name"), 
+                sqlDBConection.getResultSet().getBigDecimal("price"), 
+                sqlDBConection.getResultSet().getShort("quantity"), 
+                sqlDBConection.getResultSet().getString("description")));
+        }        
+    }
+
     @FXML
     private void getTextField() throws SQLException {
         String nameFields = nameField.getText();
@@ -64,14 +76,6 @@ public class PrimaryController {
             columnDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
             
             tableClothes.setItems(clothes);
-
-            while (sqlDBConection.getResultSet().next()) {
-                clothes.add(new Clothe(sqlDBConection.getResultSet().getInt("ID"),
-                    sqlDBConection.getResultSet().getString("name"), 
-                    sqlDBConection.getResultSet().getBigDecimal("price"), 
-                    sqlDBConection.getResultSet().getShort("quantity"), 
-                    sqlDBConection.getResultSet().getString("description")));
-            }
         }
     }
 }
