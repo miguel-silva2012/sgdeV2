@@ -4,13 +4,17 @@ import java.math.BigDecimal;
 
 public class Clothe {
     private BigDecimal price;
+    private short quantity;
+    private String description;
     private String name; 
     private int ID;
 
-    public Clothe(BigDecimal price, String name, int ID) {
+    public Clothe(int ID, String name, BigDecimal price, short quantity, String description) {
         this.name = name;
         this.price = price;
         this.ID = ID;
+        this.quantity = quantity;
+        this.description = description;
     }
 
     public int getID() {
@@ -23,6 +27,14 @@ public class Clothe {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public short getQuantity() {
+        return quantity;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public BigDecimal discaunt(String percent) {
