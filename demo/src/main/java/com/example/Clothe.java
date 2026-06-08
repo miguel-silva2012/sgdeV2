@@ -2,40 +2,17 @@ package com.example;
 
 import java.math.BigDecimal;
 
+import lombok.Getter;
+import lombok.AllArgsConstructor;
+
+@Getter
+@AllArgsConstructor
 public class Clothe {
+    private int ID;
+    private String name; 
     private BigDecimal price;
     private short quantity;
     private String description;
-    private String name; 
-    private int ID;
-
-    public Clothe(int ID, String name, BigDecimal price, short quantity, String description) {
-        this.ID = ID;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.description = description;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public short getQuantity() {
-        return quantity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public BigDecimal discaunt(String percent) {
         return this.price.subtract(this.price.multiply(new BigDecimal(percent).divide(new BigDecimal(100))));
