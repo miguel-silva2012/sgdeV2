@@ -1,9 +1,13 @@
-package com.example;
+package com.example.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.example.model.Clothe;
+
+import lombok.Getter;
 
 public class SQLDataBaseConection {
     private static final String user = "root",
@@ -12,6 +16,7 @@ public class SQLDataBaseConection {
 
     private static Connection conn;
 
+    @Getter
     private ResultSet rsClient;
 
     public SQLDataBaseConection() throws SQLException {
@@ -26,13 +31,16 @@ public class SQLDataBaseConection {
         rsClient = execQuery("SELECT * FROM tableclothes");
     }
 
-    @SuppressWarnings("exports")
-    public ResultSet execQuery(String query) throws SQLException {
-        return conn.createStatement().executeQuery(query);
+    public void addClothe(Clothe clothe) throws SQLException{
+        rsClient = execQuery(
+            "INSERT INTO tableclothes VALUES (DEFAULT, " + clothe.getName()     +    ", "
+                                                         + clothe.getPrice()    +    ", "
+                                                         + clothe.getQuantity() +    ", "
+                                                         + clothe.getDescription() + ")"
+        );
     }
 
-    @SuppressWarnings("exports")
-    public ResultSet getResultSet() {
-        return rsClient;
+    private ResultSet execQuery(String query) throws SQLException {
+        return conn.createStatement().executeQuery(query);
     }
 }

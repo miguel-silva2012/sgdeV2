@@ -17,7 +17,7 @@ A linguagem de programação usada neste projeto foi o Java 21 (LTS) com a bibli
 
 ## colaboradores
 
-- **Felipe Pascoal(Bumdigital)**;
+Contribuições são sempre bem-vindas!
 
 ### licença
 

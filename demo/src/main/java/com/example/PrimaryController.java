@@ -3,6 +3,9 @@ package com.example;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import com.example.DAO.SQLDataBaseConection;
+import com.example.model.Clothe;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,7 +35,7 @@ public class PrimaryController {
     private TableView<Clothe> tableClothes;
 
     @FXML
-    private TableColumn<Clothe, Integer> columnId;
+    private TableColumn<Clothe, Short> columnId; 
 
     @FXML
     private TableColumn<Clothe, String> columnName;
@@ -53,12 +56,12 @@ public class PrimaryController {
     public PrimaryController() throws SQLException {
         sqlDBConection = new SQLDataBaseConection();
 
-        while (sqlDBConection.getResultSet().next()) {
-            clothes.add(new Clothe(sqlDBConection.getResultSet().getInt("ID"),
-                sqlDBConection.getResultSet().getString("name"), 
-                sqlDBConection.getResultSet().getBigDecimal("price"), 
-                sqlDBConection.getResultSet().getShort("quantity"), 
-                sqlDBConection.getResultSet().getString("description")));
+        while (sqlDBConection.getRsClient().next()) {
+            clothes.add(new Clothe(sqlDBConection.getRsClient().getShort("ID"),
+                sqlDBConection.getRsClient().getString("name"), 
+                sqlDBConection.getRsClient().getBigDecimal("price"), 
+                sqlDBConection.getRsClient().getShort("quantity"), 
+                sqlDBConection.getRsClient().getString("description")));
         }        
     }
 
