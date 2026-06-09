@@ -26,10 +26,10 @@ public class SQLDataBaseConection {
 
         conn = DriverManager.getConnection(URL, user, password);
 
-        rsClient = conn.createStatement().executeQuery("SELECT * FROM tableclothes");
+        rsClient = conn.prepareStatement("SELECT * FROM tableclothes").executeQuery();
     }
 
-    public void addClothe(Clothe clothe) throws SQLException {
+    public void addClothe(ClotheDAO clothe) throws SQLException {
         execUpdate(
             "INSERT INTO tableclothes VALUES (DEFAULT, '" + clothe.getName()    +    "', '"
                                                          + clothe.getPrice()    +    "', '"

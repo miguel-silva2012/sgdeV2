@@ -29,24 +29,24 @@ public class PrimaryController {
     private Label result;
 
     @FXML 
-    private TableView<Clothe> tableClothes;
+    private TableView<ClotheDAO> tableClothes;
 
     @FXML
-    private TableColumn<Clothe, Short> columnId; 
+    private TableColumn<ClotheDAO, Short> columnId; 
 
     @FXML
-    private TableColumn<Clothe, String> columnName;
+    private TableColumn<ClotheDAO, String> columnName;
 
     @FXML
-    private TableColumn<Clothe, BigDecimal> columnPrice;
+    private TableColumn<ClotheDAO, BigDecimal> columnPrice;
 
     @FXML
-    private TableColumn<Clothe, Short> columnQuantity;
+    private TableColumn<ClotheDAO, Short> columnQuantity;
 
     @FXML
-    private TableColumn<Clothe, String> columnDescription;
+    private TableColumn<ClotheDAO, String> columnDescription;
 
-    private ObservableList<Clothe> clothes = FXCollections.observableArrayList(); 
+    private ObservableList<ClotheDAO> clothes = FXCollections.observableArrayList(); 
 
     SQLDataBaseConection sqlDBConection;
 
@@ -54,12 +54,12 @@ public class PrimaryController {
         sqlDBConection = new SQLDataBaseConection();
 
         while (sqlDBConection.getRsClient().next()) {
-            clothes.add(new Clothe(sqlDBConection.getRsClient().getShort("ID"),
+            clothes.add(new ClotheDAO(sqlDBConection.getRsClient().getShort("ID"),
                 sqlDBConection.getRsClient().getString("name"), 
                 sqlDBConection.getRsClient().getBigDecimal("price"), 
-                sqlDBConection.getRsClient().getShort("quantity"), 
+                sqlDBConection.getRsClient().getByte("quantity"), 
                 sqlDBConection.getRsClient().getString("description")));
-        }        
+        }
     }
 
     @FXML
@@ -71,23 +71,30 @@ public class PrimaryController {
 
         sqlDBConection = new SQLDataBaseConection();
 
-        if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())) {
-            nameField.clear();
-            priceField.clear();
-            quantityField.clear();
-            descriptionField.clear();
+        if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())){              
+            if (!(nameFields.length() > 30 || nameFields.matches(".*\\d+.*") ||
+                priceFields.matches("^[a-zA-Z]+$") || Byte.parseByte(quantityFields) > 127)) {
+                nameField.clear();
+                priceField.clear();
+                quantityField.clear();
+                descriptionField.clear();
 
-            columnId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-            columnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            columnPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-            columnQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-            columnDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            
-            tableClothes.setItems(clothes);
+                columnId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+                columnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                columnPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
+                columnQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+                columnDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
+                
+                tableClothes.setItems(clothes);
 
-            sqlDBConection.addClothe(new Clothe((short)0, nameFields, new BigDecimal(priceFields), Short.parseShort(quantityFields), descriptionFields));
+                sqlDBConection.addClothe(new ClotheDAO((short)0, nameFields, new BigDecimal(priceFields), Byte.parseByte(quantityFields), descriptionFields));
+            } else {
+                result.setText("Some field is invalid");
+                result.setStyle("-fx-text-fill: yellow");
+            }
         } else {
             result.setText("Some field is empty");
+            result.setStyle("-fx-text-fill: red");
         }
     }
 }

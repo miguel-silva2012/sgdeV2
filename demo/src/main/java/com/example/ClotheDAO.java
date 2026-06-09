@@ -7,10 +7,10 @@ import lombok.AllArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public class Clothe {
+public class ClotheDAO {
     private short ID;
     private String name; 
     private BigDecimal price;
-    private short quantity;
+    private byte quantity;
     private String description;
 }
