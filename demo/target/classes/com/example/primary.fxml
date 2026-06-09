@@ -44,7 +44,7 @@
             maxWidth="250.0"/>
       </HBox>      
 
-      <Button text="Enter" onAction="#getTextField" />
+      <Button text="Enter" onAction="#execute" />
 
       <Label text=" " fx:id="result" />
 

@@ -3,9 +3,6 @@ package com.example;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
-import com.example.DAO.SQLDataBaseConection;
-import com.example.model.Clothe;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -66,11 +63,11 @@ public class PrimaryController {
     }
 
     @FXML
-    private void getTextField() throws SQLException {
+    private void execute() throws SQLException {
         String nameFields = nameField.getText();
         String priceFields = priceField.getText(); 
-        String quantityFields = priceField.getText(); 
-        String descriptionFields = priceField.getText(); 
+        String quantityFields = quantityField.getText(); 
+        String descriptionFields = descriptionField.getText(); 
 
         sqlDBConection = new SQLDataBaseConection();
 
@@ -87,6 +84,8 @@ public class PrimaryController {
             columnDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
             
             tableClothes.setItems(clothes);
+
+            sqlDBConection.addClothe(new Clothe((short)0, nameFields, new BigDecimal(priceFields), Short.parseShort(quantityFields), descriptionFields));
         } else {
             result.setText("Some field is empty");
         }
