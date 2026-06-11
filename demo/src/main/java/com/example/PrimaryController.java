@@ -29,38 +29,24 @@ public class PrimaryController {
     private Label result;
 
     @FXML 
-    private TableView<ClotheDAO> tableClothes;
+    public TableView<ClotheDAO> tableClothes;
 
     @FXML
-    private TableColumn<ClotheDAO, Short> columnId; 
+    public TableColumn<ClotheDAO, Short> columnId; 
 
     @FXML
-    private TableColumn<ClotheDAO, String> columnName;
+    public TableColumn<ClotheDAO, String> columnName;
 
     @FXML
-    private TableColumn<ClotheDAO, BigDecimal> columnPrice;
+    public TableColumn<ClotheDAO, BigDecimal> columnPrice;
 
     @FXML
-    private TableColumn<ClotheDAO, Short> columnQuantity;
+    public TableColumn<ClotheDAO, Short> columnQuantity;
 
     @FXML
-    private TableColumn<ClotheDAO, String> columnDescription;
+    public TableColumn<ClotheDAO, String> columnDescription;
 
-    private ObservableList<ClotheDAO> clothes = FXCollections.observableArrayList(); 
-
-    SQLDataBaseConection sqlDBConection;
-
-    public PrimaryController() throws SQLException {
-        sqlDBConection = new SQLDataBaseConection();
-
-        while (sqlDBConection.getRsClient().next()) {
-            clothes.add(new ClotheDAO(sqlDBConection.getRsClient().getShort("ID"),
-                sqlDBConection.getRsClient().getString("name"), 
-                sqlDBConection.getRsClient().getBigDecimal("price"), 
-                sqlDBConection.getRsClient().getByte("quantity"), 
-                sqlDBConection.getRsClient().getString("description")));
-        }
-    }
+    public ObservableList<ClotheDAO> clothes = FXCollections.observableArrayList(); 
 
     @FXML
     private void execute() throws SQLException {
@@ -69,29 +55,19 @@ public class PrimaryController {
         String quantityFields = quantityField.getText(); 
         String descriptionFields = descriptionField.getText(); 
 
-        sqlDBConection = new SQLDataBaseConection();
+        if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())) {
+            nameField.clear();
+            priceField.clear();
+            quantityField.clear();
+            descriptionField.clear();
 
-        if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())){              
-            if (!(nameFields.length() > 30 || nameFields.matches(".*\\d+.*") ||
-                priceFields.matches("^[a-zA-Z]+$") || Byte.parseByte(quantityFields) > 127)) {
-                nameField.clear();
-                priceField.clear();
-                quantityField.clear();
-                descriptionField.clear();
+            ClotheDAO clothe = new ClotheDAO(nameFields, new BigDecimal(priceFields), Byte.parseByte(quantityFields), descriptionFields);
 
-                columnId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-                columnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-                columnPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-                columnQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-                columnDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
-                
-                tableClothes.setItems(clothes);
+            App.sqlDBConection.addClothe(clothe);
 
-                sqlDBConection.addClothe(new ClotheDAO((short)0, nameFields, new BigDecimal(priceFields), Byte.parseByte(quantityFields), descriptionFields));
-            } else {
-                result.setText("Some field is invalid");
-                result.setStyle("-fx-text-fill: yellow");
-            }
+            clothes.add(clothe);
+            
+            tableClothes.setItems(clothes);
         } else {
             result.setText("Some field is empty");
             result.setStyle("-fx-text-fill: red");

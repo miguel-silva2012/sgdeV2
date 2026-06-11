@@ -29,6 +29,10 @@ public class SQLDataBaseConection {
         rsClient = conn.prepareStatement("SELECT * FROM tableclothes").executeQuery();
     }
 
+    public void closeConection() throws SQLException {
+        conn.close();
+    }
+
     public void addClothe(ClotheDAO clothe) throws SQLException {
         execUpdate(
             "INSERT INTO tableclothes VALUES (DEFAULT, '" + clothe.getName()    +    "', '"

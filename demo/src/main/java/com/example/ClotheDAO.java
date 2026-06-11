@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 @Getter
 @AllArgsConstructor
 public class ClotheDAO {
-    private short ID;
     private String name; 
     private BigDecimal price;
     private byte quantity;
