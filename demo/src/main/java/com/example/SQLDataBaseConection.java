@@ -2,6 +2,7 @@ package com.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,6 +18,9 @@ public class SQLDataBaseConection {
     @Getter
     private ResultSet rsClient;
 
+    @Getter
+    private String mainTable = "tableclothes";
+
     public SQLDataBaseConection() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,7 +30,7 @@ public class SQLDataBaseConection {
 
         conn = DriverManager.getConnection(URL, user, password);
 
-        rsClient = conn.prepareStatement("SELECT * FROM tableclothes").executeQuery();
+        rsClient = conn.prepareStatement("SELECT * FROM " + mainTable).executeQuery();
     }
 
     public void closeConection() throws SQLException {
@@ -34,15 +38,18 @@ public class SQLDataBaseConection {
     }
 
     public void addClothe(ClotheDAO clothe) throws SQLException {
-        execUpdate(
-            "INSERT INTO tableclothes VALUES (DEFAULT, '" + clothe.getName()    +    "', '"
-                                                         + clothe.getPrice()    +    "', '"
-                                                         + clothe.getQuantity() +    "', '"
-                                                         + clothe.getDescription() + "') "
-        );
+        String query = "INSERT INTO " + mainTable + " VALUES (DEFAULT, ?, ?, ?, ?)";
+
+        execUpdate(query, clothe);
     }
 
-    private void execUpdate(String query) throws SQLException {
-        conn.prepareStatement(query).executeUpdate();
+    private void execUpdate(String query, ClotheDAO clothe) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, clothe.getName());
+        ps.setBigDecimal(2, clothe.getPrice());
+        ps.setShort(3, clothe.getQuantity());
+        ps.setString(4, clothe.getDescription());
+
+        ps.executeUpdate();
     }
 }
