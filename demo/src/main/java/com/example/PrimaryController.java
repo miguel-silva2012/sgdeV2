@@ -45,41 +45,31 @@ public class PrimaryController {
     @FXML
     public TableColumn<ClotheDAO, String> columnDescription;
 
-    public ObservableList<ClotheDAO> clothes = FXCollections.observableArrayList();
+    public ObservableList<ClotheDAO> clothes = FXCollections.observableArrayList(); 
 
-    private boolean validClotheAdding() {
-        try {
-            String nameFieldCont = nameField.getText();         
+    @FXML
+    private void execute() throws SQLException {
+        String nameFields = nameField.getText();
+        String priceFields = priceField.getText(); 
+        String quantityFields = quantityField.getText(); 
+        String descriptionFields = descriptionField.getText(); 
 
-            short quantityFieldCont = Short.parseShort(quantityField.getText().trim()); 
+        if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())) {
+            nameField.clear();
+            priceField.clear();
+            quantityField.clear();
+            descriptionField.clear();
 
-            BigDecimal priceFieldCont = new BigDecimal(priceField.getText().trim().replace(",", "."));
-
-            String descriptionFieldCont = descriptionField.getText();
-
-            ClotheDAO clothe = new ClotheDAO(nameFieldCont, priceFieldCont, quantityFieldCont, descriptionFieldCont);
+            ClotheDAO clothe = new ClotheDAO(nameFields, new BigDecimal(priceFields), Byte.parseByte(quantityFields), descriptionFields);
 
             App.sqlDBConection.addClothe(clothe);
 
             clothes.add(clothe);
             
             tableClothes.setItems(clothes);
-        } catch (SQLException | NumberFormatException e) {
-            result.setText("Some field is invalid");
-            result.setStyle("-fx-text-fill: yellow");
-            return false;
+        } else {
+            result.setText("Some field is empty");
+            result.setStyle("-fx-text-fill: red");
         }
-
-        return true;
-    }
-
-    @FXML
-    private void updateTable() {
-        validClotheAdding();
-
-        nameField.clear();
-        priceField.clear();
-        quantityField.clear();
-        descriptionField.clear();
     }
 }
