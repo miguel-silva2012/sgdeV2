@@ -26,8 +26,8 @@
          <Label text="Price: " />
 
          <TextField fx:id="priceField" 
-            promptText="Say the price of the product..." 
-            maxWidth="250.0"/>         
+                  promptText="Say the price of the product..." 
+                  maxWidth="250.0"/>         
       </HBox>
 
       <HBox spacing="10.0" alignment="CENTER">   
@@ -44,7 +44,7 @@
             maxWidth="250.0"/>
       </HBox>      
 
-      <Button text="Enter" onAction="#execute" />
+      <Button text="Enter" onAction="#updateTable" />
 
       <Label text=" " fx:id="result" />
 
