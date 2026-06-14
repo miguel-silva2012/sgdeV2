@@ -21,20 +21,28 @@ public class SQLDataBaseConection {
     @Getter
     private String mainTable = "tableclothes";
 
-    public SQLDataBaseConection() throws SQLException {
+    public SQLDataBaseConection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }  
 
-        conn = DriverManager.getConnection(URL, user, password);
+        try {
+            conn = DriverManager.getConnection(URL, user, password);
 
-        rsClient = conn.prepareStatement("SELECT * FROM " + mainTable).executeQuery();
+            rsClient = conn.prepareStatement("SELECT * FROM " + mainTable).executeQuery();            
+        } catch (SQLException e) {
+            System.out.println("Falha ao se conectar com o banco de dados");
+        }
     }
 
-    public void closeConection() throws SQLException {
-        conn.close();
+    public void closeConection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Falha ao Fechar a conexão com o banco de dados");
+        }
     }
 
     public void addClothe(ClotheDAO clothe) throws SQLException {

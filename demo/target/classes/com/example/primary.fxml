@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.PrimaryController">
    <stylesheets>
       <URL value="@css/style.css" />
    </stylesheets>
@@ -45,6 +45,7 @@
       </HBox>      
 
       <Button text="Enter" onAction="#execute" />
+      <Button text="Generate report" onAction="#generateReport" />
 
       <Label text=" " fx:id="result" />
 

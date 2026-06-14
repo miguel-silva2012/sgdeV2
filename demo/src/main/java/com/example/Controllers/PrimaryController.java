@@ -1,28 +1,29 @@
-package com.example;
+package com.example.Controllers;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import com.example.App;
+import com.example.ClotheDAO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class PrimaryController {
     @FXML
-    private TextField nameField;
-
-    @FXML
-    private TextField priceField;
-
-    @FXML
-    private TextField quantityField;
-
-    @FXML
-    private TextField descriptionField;
+    private TextField nameField, priceField, quantityField, descriptionField;
 
     @FXML
     private Label result;
@@ -31,19 +32,13 @@ public class PrimaryController {
     public TableView<ClotheDAO> tableClothes;
 
     @FXML
-    public TableColumn<ClotheDAO, Short> columnId; 
+    public TableColumn<ClotheDAO, Short> columnId, columnQuantity; 
 
     @FXML
-    public TableColumn<ClotheDAO, String> columnName;
+    public TableColumn<ClotheDAO, String> columnName, columnDescription;
 
     @FXML
     public TableColumn<ClotheDAO, BigDecimal> columnPrice;
-
-    @FXML
-    public TableColumn<ClotheDAO, Short> columnQuantity;
-
-    @FXML
-    public TableColumn<ClotheDAO, String> columnDescription;
 
     public ObservableList<ClotheDAO> clothes = FXCollections.observableArrayList(); 
 
@@ -52,7 +47,7 @@ public class PrimaryController {
         String nameFields = nameField.getText();
         String priceFields = priceField.getText(); 
         String quantityFields = quantityField.getText(); 
-        String descriptionFields = descriptionField.getText(); 
+        String descriptionFields = descriptionField.getText();
 
         if (!(nameFields.isEmpty() || priceFields.isEmpty() || quantityFields.isEmpty() || descriptionFields.isEmpty())) {
             nameField.clear();
@@ -71,5 +66,10 @@ public class PrimaryController {
             result.setText("Some field is empty");
             result.setStyle("-fx-text-fill: red");
         }
+    }
+
+    @FXML
+    private void generateReport(ActionEvent event) throws IOException {
+        
     }
 }

@@ -10,6 +10,6 @@ import lombok.AllArgsConstructor;
 public class ClotheDAO {
     private String name; 
     private BigDecimal price;
-    private byte quantity;
+    private short quantity;
     private String description;
 }

@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.example.Controllers.PrimaryController;
+
 public class App extends Application {
 
     private static Scene scene;
@@ -33,7 +35,7 @@ public class App extends Application {
                 )
             );
         }
-
+        
         controller.columnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         controller.columnPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
         controller.columnQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
@@ -46,7 +48,7 @@ public class App extends Application {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() throws SQLException {
         sqlDBConection.closeConection();
     }
 

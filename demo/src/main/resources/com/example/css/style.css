@@ -34,17 +34,32 @@
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: rgb(44, 44, 44);
+    -fx-background-color: rgb(55, 55, 55);
 }
 
-.table-view .table-row-cell {
+.table-row-cell {
     -fx-background-color: rgb(44, 44, 44);
 }
 
 .table-row-cell:odd {
-    -fx-background-color: rgb(55, 55, 55);
+    -fx-background-color: rgb(50, 50, 50);
 }
 
 .table-row-cell:filled:selected {
     -fx-background-color: rgb(83, 83, 83);
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-pref-width: 0;
+    visibility: hidden;
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-pref-height: 0;
+    visibility: hidden;
+}
+
+.table-view {
+    -fx-table-cell-border-color: rgb(55, 55, 55);
 }
